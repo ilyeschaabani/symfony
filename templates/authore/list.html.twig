@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>le nombre des Authors : {{authors | length }}</h1>
+<table border ="1">
+<tr>
+    <th>id</th>
+    <th>picture</th>
+    <th>username</th>
+    <th>email</th>
+    <th>nb_books</th>
+</tr>
+{% for a in authors %}
+<tr>
+    <td>{{ a.id }}</td>
+    <td><img src="{{ a.picture }}" alt=""></td>
+    <td>{{ a.username | upper}}</td>
+    <td>{{ a.email }}</td>
+    <td>{{ a.nb_books }}</td>
+</tr>
+{% else %}
+    <tr>
+    <td colspan="5">No authors</td>
+{% endfor %}
+</table>
+{% set nbTotal=0 %}
+{% for a in authors %}
+{% set nbTotal=nbTotal+a.nb_books %}
+{% endfor %}
+<p>le nombre total des livres : {{ nbTotal }}</p>
+</body>
+</html>
